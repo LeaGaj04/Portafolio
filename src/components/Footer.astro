@@ -1,0 +1,77 @@
+---
+---
+
+<footer>
+    <div class="footer-brand">
+        <h3>CHRISTOPHER MORENO</h3>
+        <p>&copy; 2026 Christopher Moreno. Todos los derechos reservados.</p>
+    </div>
+    <div class="footer-contact">
+        <h4>Contato</h4>
+        <a href="mailto:contato@christophermoreno.com">contato@christophermoreno.com</a>
+    </div>
+    <div class="footer-links">
+        <h4>Navegación</h4>
+        <ul>
+            <li><a href="#">Filmmaker</a></li>
+            <li><a href="#">Fotógrafo</a></li>
+            <li><a href="#">Sobre</a></li>
+        </ul>
+    </div>
+</footer>
+
+<style>
+    footer {
+        background-color: var(--black);
+        color: var(--white);
+        padding: 6rem 4rem 3rem 4rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+    .footer-brand h3 {
+        font-weight: 900;
+        font-size: 1.5rem;
+        letter-spacing: -0.02em;
+        margin-bottom: 1rem;
+    }
+    .footer-brand p {
+        font-size: 0.8rem;
+        color: #888;
+        margin-top: 3rem;
+    }
+    .footer-contact h4, .footer-links h4 {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+        color: #888;
+    }
+    .footer-contact a {
+        font-size: 1.1rem;
+        font-weight: 300;
+        text-decoration: underline;
+        text-underline-offset: 6px;
+    }
+    .footer-links ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    .footer-links a {
+        font-size: 0.9rem;
+        font-weight: 300;
+    }
+    .footer-links a:hover {
+        text-decoration: underline;
+        text-underline-offset: 4px;
+    }
+
+    @media (max-width: 1024px) {
+        footer {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+    }
+</style>
