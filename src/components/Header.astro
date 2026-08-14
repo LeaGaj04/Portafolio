@@ -1,0 +1,66 @@
+---
+// Aquí puedes colocar lógica de JavaScript o TypeScript si la necesitas
+---
+
+<header>
+    <div class="logo">Christopher Moreno</div>
+    <nav>
+        <ul>
+            <li><a href="#">Filmmaker</a></li>
+            <li><a href="#">Creator</a></li>
+            <li><a href="#">Fotógrafo</a></li>
+            <li><a href="#">Diretor</a></li>
+            <li><a href="#">Sobre</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
+    </nav>
+    <div class="social-icons">
+        <!-- Icono Instagram -->
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0..."></path></svg>
+        <!-- Icono TikTok -->
+        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83..."></path></svg>
+    </div>
+</header>
+
+<style>
+    header {
+        position: sticky;
+        top: 0;
+        background-color: var(--white);
+        border-bottom: 1px solid var(--black);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 4rem;
+        z-index: 1000;
+    }
+    .logo {
+        font-weight: 900;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+    }
+    nav ul {
+        display: flex;
+        gap: 2.5rem;
+    }
+    nav a {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        transition: opacity 0.3s ease;
+    }
+    nav a:hover { opacity: 0.5; }
+    .social-icons {
+        display: flex;
+        gap: 1.5rem;
+    }
+    .social-icons svg {
+        width: 20px;
+        fill: var(--black);
+        cursor: pointer;
+    }
+    @media (max-width: 1024px) {
+        nav ul { display: none; }
+    }
+</style>
