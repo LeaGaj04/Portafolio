@@ -1,145 +1,139 @@
 ---
 ---
 
-<section class="hero-carousel">
-    <button class="carousel-arrow prev">‹</button>
-    
-    <div class="carousel-track">
-        <!-- Imagen 1 (Activa por defecto) -->
-        <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1604928141064-207cea6f571f?q=80&w=2000&auto=format&fit=crop');"></div>
-        
-        <!-- Imagen 2 -->
-        <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop');"></div>
-        
-        <!-- Imagen 3 -->
-        <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1519638399535-1b036603ac77?q=80&w=2000&auto=format&fit=crop');"></div>
-    </div>
+<section class="hero-section">
+    <div class="container">
+        <div class="carousel-wrapper">
+            <button class="carousel-arrow prev">‹</button>
+            
+            <div class="carousel-track" id="track">
+                <!-- He puesto varias fotos variadas para que se note el efecto de corte -->
+                <img class="slide" src="https://images.unsplash.com/photo-1604928141064-207cea6f571f?q=80&w=800&auto=format&fit=crop" alt="Slide 1">
+                <img class="slide" src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop" alt="Slide 2">
+                <img class="slide" src="https://images.unsplash.com/photo-1519638399535-1b036603ac77?q=80&w=800&auto=format&fit=crop" alt="Slide 3">
+                <img class="slide" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=800&auto=format&fit=crop" alt="Slide 4">
+                <img class="slide" src="https://images.unsplash.com/photo-1512316635851-1e24747eb48b?q=80&w=800&auto=format&fit=crop" alt="Slide 5">
+                <img class="slide" src="https://images.unsplash.com/photo-1554046920-90dc5823ca2f?q=80&w=800&auto=format&fit=crop" alt="Slide 6">
+                <img class="slide" src="https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?q=80&w=800&auto=format&fit=crop" alt="Slide 7">
+            </div>
 
-    <button class="carousel-arrow next">›</button>
+            <button class="carousel-arrow next">›</button>
+        </div>
+    </div>
 </section>
 
 <style>
-    /* 1. DISEÑO MÁS PEQUEÑO Y CENTRADO */
-    .hero-carousel {
-        width: 90%;
-        max-width: 1400px;
-        height: 60vh; /* Altura reducida */
-        margin: 4rem auto; /* Espacio arriba/abajo y centrado a los lados */
-        border-radius: 16px; /* Bordes redondeados */
-        background-color: var(--black);
+    .hero-section {
+        width: 100%;
+        margin-top: 2rem; 
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .carousel-wrapper {
         position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        overflow: hidden;
+        width: 100%;
+        height: 500px; /* Altura fija para que parezcan tiras de fotos */
+        max-height: 65vh;
+        overflow: hidden; 
     }
 
     .carousel-track {
-        position: absolute;
-        top: 0;
-        left: 0;
+        display: flex;
+        gap: 10px; /* La línea blanca delgada entre cada foto */
         width: 100%;
         height: 100%;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
     }
 
-    /* 2. EFECTO DE TRANSICIÓN (FADE) */
-    .carousel-slide {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
+    .slide {
+        /* MAGIA AQUÍ: 20% significa que entran exactamente 5 fotos completas */
+        flex: 0 0 calc(20% - 8px); 
         height: 100%;
-        background-size: cover;
-        background-position: center;
-        filter: grayscale(100%) contrast(1.2);
-        opacity: 0; /* Ocultas por defecto */
-        transition: opacity 0.8s ease-in-out;
-        z-index: 1;
-    }
-
-    /* Clase que se añade con JS para mostrar la imagen */
-    .carousel-slide.active {
-        opacity: 1;
-        z-index: 2;
+        /* El object-fit recorta cualquier foto (incluso horizontales) para que quepan en la tira vertical */
+        object-fit: cover;
+        object-position: center;
     }
 
     .carousel-arrow {
-        z-index: 3;
-        background: none;
-        border: none;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
         color: var(--white);
+        border: none;
         font-size: 3rem;
-        padding: 0 2rem;
         cursor: pointer;
-        mix-blend-mode: difference;
-        transition: transform 0.3s ease;
+        z-index: 10;
+        text-shadow: 0px 0px 10px rgba(0,0,0,0.5); 
+        transition: transform 0.2s ease;
     }
 
     .carousel-arrow:hover {
-        transform: scale(1.2);
+        transform: translateY(-50%) scale(1.2);
     }
 
-    /* Responsive */
+    .carousel-arrow.prev { left: 10px; }
+    .carousel-arrow.next { right: 10px; }
+
+    /* En pantallas más pequeñas, mostramos menos fotos a la vez */
     @media (max-width: 1024px) {
-        .hero-carousel {
-            width: 95%;
-            height: 50vh;
-            margin: 2rem auto;
-        }
+        .slide { flex: 0 0 calc(33.333% - 7px); } /* 3 fotos en tablet */
+    }
+    @media (max-width: 768px) {
+        .slide { flex: 0 0 calc(50% - 5px); } /* 2 fotos en celular */
     }
 </style>
 
 <script>
-    /* 3. LÓGICA DE JAVASCRIPT PARA ROTAR AUTOMÁTICAMENTE */
-    const slides = document.querySelectorAll('.carousel-slide');
-    const prevBtn = document.querySelector('.carousel-arrow.prev');
+    const track = document.getElementById('track');
     const nextBtn = document.querySelector('.carousel-arrow.next');
-    
-    let currentSlide = 0;
-    let autoPlayInterval;
+    const prevBtn = document.querySelector('.carousel-arrow.prev');
 
-    // Función para mostrar una imagen específica
-    function showSlide(index) {
-        slides.forEach(slide => slide.classList.remove('active'));
-        slides[index].classList.add('active');
+    function slideNext() {
+        if (!track) return;
+        const slide = track.querySelector('.slide');
+        if (!slide) return;
+        
+        const slideWidth = slide.clientWidth + 10; // ancho de foto + el gap de 10px
+
+        if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
+            track.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+            track.scrollBy({ left: slideWidth, behavior: 'smooth' });
+        }
     }
 
-    // Función para ir a la siguiente imagen
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
+    function slidePrev() {
+        if (!track) return;
+        const slide = track.querySelector('.slide');
+        if (!slide) return;
+        
+        const slideWidth = slide.clientWidth + 10;
+        track.scrollBy({ left: -slideWidth, behavior: 'smooth' });
     }
 
-    // Función para ir a la imagen anterior
-    function prevSlide() {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(currentSlide);
-    }
+    let autoPlay = setInterval(slideNext, 3000);
 
-    // Iniciar rotación automática cada 4 segundos (4000 milisegundos)
-    function startAutoPlay() {
-        autoPlayInterval = setInterval(nextSlide, 4000);
-    }
-
-    // Reiniciar el contador si el usuario hace clic manualmente
     function resetAutoPlay() {
-        clearInterval(autoPlayInterval);
-        startAutoPlay();
+        clearInterval(autoPlay);
+        autoPlay = setInterval(slideNext, 3000);
     }
 
-    // Escuchar los clics en los botones
-    if (nextBtn && prevBtn && slides.length > 0) {
+    if (nextBtn && prevBtn && track) {
         nextBtn.addEventListener('click', () => {
-            nextSlide();
+            slideNext();
             resetAutoPlay();
         });
 
         prevBtn.addEventListener('click', () => {
-            prevSlide();
+            slidePrev();
             resetAutoPlay();
         });
-
-        // Activar el autoplay al cargar la página
-        startAutoPlay();
     }
 </script>
