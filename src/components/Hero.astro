@@ -2,15 +2,30 @@
 ---
 
 <section class="hero-carousel">
-    <button class="carousel-arrow">‹</button>
-    <div class="carousel-slide"></div>
-    <button class="carousel-arrow">›</button>
+    <button class="carousel-arrow prev">‹</button>
+    
+    <div class="carousel-track">
+        <!-- Imagen 1 (Activa por defecto) -->
+        <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1604928141064-207cea6f571f?q=80&w=2000&auto=format&fit=crop');"></div>
+        
+        <!-- Imagen 2 -->
+        <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop');"></div>
+        
+        <!-- Imagen 3 -->
+        <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1519638399535-1b036603ac77?q=80&w=2000&auto=format&fit=crop');"></div>
+    </div>
+
+    <button class="carousel-arrow next">›</button>
 </section>
 
 <style>
+    /* 1. DISEÑO MÁS PEQUEÑO Y CENTRADO */
     .hero-carousel {
-        width: 100vw;
-        height: 85vh;
+        width: 90%;
+        max-width: 1400px;
+        height: 60vh; /* Altura reducida */
+        margin: 4rem auto; /* Espacio arriba/abajo y centrado a los lados */
+        border-radius: 16px; /* Bordes redondeados */
         background-color: var(--black);
         position: relative;
         display: flex;
@@ -18,30 +33,113 @@
         justify-content: space-between;
         overflow: hidden;
     }
+
+    .carousel-track {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* 2. EFECTO DE TRANSICIÓN (FADE) */
     .carousel-slide {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url('https://images.unsplash.com/photo-1604928141064-207cea6f571f?q=80&w=2000&auto=format&fit=crop');
         background-size: cover;
         background-position: center;
         filter: grayscale(100%) contrast(1.2);
+        opacity: 0; /* Ocultas por defecto */
+        transition: opacity 0.8s ease-in-out;
         z-index: 1;
     }
-    .carousel-arrow {
+
+    /* Clase que se añade con JS para mostrar la imagen */
+    .carousel-slide.active {
+        opacity: 1;
         z-index: 2;
+    }
+
+    .carousel-arrow {
+        z-index: 3;
         background: none;
         border: none;
         color: var(--white);
         font-size: 3rem;
-        padding: 0 3rem;
+        padding: 0 2rem;
         cursor: pointer;
         mix-blend-mode: difference;
         transition: transform 0.3s ease;
     }
+
     .carousel-arrow:hover {
         transform: scale(1.2);
     }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+        .hero-carousel {
+            width: 95%;
+            height: 50vh;
+            margin: 2rem auto;
+        }
+    }
 </style>
+
+<script>
+    /* 3. LÓGICA DE JAVASCRIPT PARA ROTAR AUTOMÁTICAMENTE */
+    const slides = document.querySelectorAll('.carousel-slide');
+    const prevBtn = document.querySelector('.carousel-arrow.prev');
+    const nextBtn = document.querySelector('.carousel-arrow.next');
+    
+    let currentSlide = 0;
+    let autoPlayInterval;
+
+    // Función para mostrar una imagen específica
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[index].classList.add('active');
+    }
+
+    // Función para ir a la siguiente imagen
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    // Función para ir a la imagen anterior
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    // Iniciar rotación automática cada 4 segundos (4000 milisegundos)
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(nextSlide, 4000);
+    }
+
+    // Reiniciar el contador si el usuario hace clic manualmente
+    function resetAutoPlay() {
+        clearInterval(autoPlayInterval);
+        startAutoPlay();
+    }
+
+    // Escuchar los clics en los botones
+    if (nextBtn && prevBtn && slides.length > 0) {
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetAutoPlay();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetAutoPlay();
+        });
+
+        // Activar el autoplay al cargar la página
+        startAutoPlay();
+    }
+</script>
