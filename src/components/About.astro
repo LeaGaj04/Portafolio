@@ -1,35 +1,47 @@
 ---
 ---
 
-<section class="about-section">
-    <div class="about-text">
-        <h2>Cineasta,<br>Creador,<br>Director de Fotografía.</h2>
-        <p>Especializado en narrativas visuales de alto impacto — del cortometraje al editorial de moda. Cada encuadre es una elección deliberada. Cada proyecto, una conversación entre luz, tiempo y silencio.</p>
+<section class="about-wrapper">
+    <div class="container about-content">
+        <div class="about-text">
+            <h2>Cineasta,<br>Creador,<br>Director de Fotografía.</h2>
+            <p>Especializado en narrativas visuales de alto impacto — del cortometraje al editorial de moda. Cada encuadre es una elección deliberada. Cada proyecto, una conversación entre luz, tiempo y silencio.</p>
+        </div>
+        <div class="about-image"></div>
     </div>
-    <div class="about-image"></div>
 </section>
 
 <style>
-    .about-section {
+    .about-wrapper {
+        width: 100%;
+        background-color: #f7f7f7;
+        margin: 5rem 0; /* Margen blanco superior e inferior */
+        padding: 3.5rem 0; /* REDUCIDO: Menos altura para el fondo gris */
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .about-content {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 4rem; /* Espacio entre texto y foto reducido */
-        padding: 5rem 6rem; /* Padding superior e inferior reducido drásticamente */
+        gap: 3rem; /* REDUCIDO: Menos espacio entre texto y foto */
         align-items: center;
-        max-width: 1400px;
-        margin: 0 auto; /* Centra la sección en pantallas enormes */
     }
 
     .about-text h2 {
-        font-size: 2.8rem; /* Titular un poco más pequeño */
+        font-size: 2.4rem; /* REDUCIDO: Titular más compacto */
         font-weight: 900;
         line-height: 1.1;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.2rem;
         text-transform: uppercase;
     }
 
     .about-text p {
-        font-size: 1rem;
+        font-size: 0.95rem;
         line-height: 1.6;
         font-weight: 300;
         max-width: 90%;
@@ -37,25 +49,30 @@
 
     .about-image {
         width: 100%;
-        max-height: 65vh; /* Límite de altura: 65% de la pantalla */
-        aspect-ratio: 3 / 4; /* Mantiene la proporción de retrato */
+        max-height: 50vh; /* REDUCIDO: La foto ocupará máximo la mitad de la pantalla */
+        aspect-ratio: 3 / 4;
         background-color: var(--gray-placeholder);
-        /* Aquí debes colocar la URL de la foto de Christopher Moreno */
+        /* Ruta de tu foto */
         background-image: url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop');
         background-size: cover;
-        background-position: center top; /* Asegura que la cara (parte superior) no se corte */
+        background-position: center top; 
         filter: grayscale(100%);
     }
 
+    /* Adaptación a móviles */
     @media (max-width: 1024px) {
-        .about-section {
+        .about-wrapper {
+            margin: 3rem 0;
+            padding: 3rem 0;
+        }
+
+        .about-content {
             grid-template-columns: 1fr;
-            padding: 4rem 2rem;
             gap: 2rem;
         }
         
         .about-image {
-            max-height: 50vh; /* En móviles la imagen es aún más compacta */
+            max-height: 45vh;
         }
     }
 </style>
