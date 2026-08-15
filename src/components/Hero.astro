@@ -1,20 +1,48 @@
 ---
+
 ---
 
 <section class="hero-section">
     <div class="container">
         <div class="carousel-wrapper">
             <button class="carousel-arrow prev">‹</button>
-            
+
             <div class="carousel-track" id="track">
-                <!-- He puesto varias fotos variadas para que se note el efecto de corte -->
-                <img class="slide" src="https://images.unsplash.com/photo-1604928141064-207cea6f571f?q=80&w=800&auto=format&fit=crop" alt="Slide 1">
-                <img class="slide" src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop" alt="Slide 2">
-                <img class="slide" src="https://images.unsplash.com/photo-1519638399535-1b036603ac77?q=80&w=800&auto=format&fit=crop" alt="Slide 3">
-                <img class="slide" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=800&auto=format&fit=crop" alt="Slide 4">
-                <img class="slide" src="https://images.unsplash.com/photo-1512316635851-1e24747eb48b?q=80&w=800&auto=format&fit=crop" alt="Slide 5">
-                <img class="slide" src="https://images.unsplash.com/photo-1554046920-90dc5823ca2f?q=80&w=800&auto=format&fit=crop" alt="Slide 6">
-                <img class="slide" src="https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?q=80&w=800&auto=format&fit=crop" alt="Slide 7">
+                <img
+                    class="slide"
+                    src="/images/Conception/_DSC4284.jpeg"
+                    alt="Proyecto Conception 1"
+                />
+                <img
+                    class="slide"
+                    src="/images/Conception/_DSC4296.jpeg"
+                    alt="Proyecto Conception 2"
+                />
+                <img
+                    class="slide"
+                    src="/images/Conception/_DSC4327.jpeg"
+                    alt="Proyecto Conception 3"
+                />
+                <img
+                    class="slide"
+                    src="/images/Conception/_DSC4633.jpeg"
+                    alt="Proyecto Conception 4"
+                />
+                <img
+                    class="slide"
+                    src="/images/Conception/_DSC4641.jpeg"
+                    alt="Proyecto Conception 5"
+                />
+                <img
+                    class="slide"
+                    src="/images/Conception/_DSC4655.jpeg"
+                    alt="Proyecto Conception 6"
+                />
+                <img
+                    class="slide"
+                    src="/images/Conception/IMG_3216.jpeg"
+                    alt="Proyecto Conception 7"
+                />
             </div>
 
             <button class="carousel-arrow next">›</button>
@@ -25,7 +53,7 @@
 <style>
     .hero-section {
         width: 100%;
-        margin-top: 2rem; 
+        margin-top: 2rem;
     }
 
     .container {
@@ -39,7 +67,7 @@
         width: 100%;
         height: 500px; /* Altura fija para que parezcan tiras de fotos */
         max-height: 65vh;
-        overflow: hidden; 
+        overflow: hidden;
     }
 
     .carousel-track {
@@ -53,7 +81,7 @@
 
     .slide {
         /* MAGIA AQUÍ: 20% significa que entran exactamente 5 fotos completas */
-        flex: 0 0 calc(20% - 8px); 
+        flex: 0 0 calc(20% - 8px);
         height: 100%;
         /* El object-fit recorta cualquier foto (incluso horizontales) para que quepan en la tira vertical */
         object-fit: cover;
@@ -70,7 +98,7 @@
         font-size: 3rem;
         cursor: pointer;
         z-index: 10;
-        text-shadow: 0px 0px 10px rgba(0,0,0,0.5); 
+        text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
         transition: transform 0.2s ease;
     }
 
@@ -78,44 +106,52 @@
         transform: translateY(-50%) scale(1.2);
     }
 
-    .carousel-arrow.prev { left: 10px; }
-    .carousel-arrow.next { right: 10px; }
+    .carousel-arrow.prev {
+        left: 10px;
+    }
+    .carousel-arrow.next {
+        right: 10px;
+    }
 
     /* En pantallas más pequeñas, mostramos menos fotos a la vez */
     @media (max-width: 1024px) {
-        .slide { flex: 0 0 calc(33.333% - 7px); } /* 3 fotos en tablet */
+        .slide {
+            flex: 0 0 calc(33.333% - 7px);
+        } /* 3 fotos en tablet */
     }
     @media (max-width: 768px) {
-        .slide { flex: 0 0 calc(50% - 5px); } /* 2 fotos en celular */
+        .slide {
+            flex: 0 0 calc(50% - 5px);
+        } /* 2 fotos en celular */
     }
 </style>
 
 <script>
-    const track = document.getElementById('track');
-    const nextBtn = document.querySelector('.carousel-arrow.next');
-    const prevBtn = document.querySelector('.carousel-arrow.prev');
+    const track = document.getElementById("track");
+    const nextBtn = document.querySelector(".carousel-arrow.next");
+    const prevBtn = document.querySelector(".carousel-arrow.prev");
 
     function slideNext() {
         if (!track) return;
-        const slide = track.querySelector('.slide');
+        const slide = track.querySelector(".slide");
         if (!slide) return;
-        
+
         const slideWidth = slide.clientWidth + 10; // ancho de foto + el gap de 10px
 
         if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
-            track.scrollTo({ left: 0, behavior: 'smooth' });
+            track.scrollTo({ left: 0, behavior: "smooth" });
         } else {
-            track.scrollBy({ left: slideWidth, behavior: 'smooth' });
+            track.scrollBy({ left: slideWidth, behavior: "smooth" });
         }
     }
 
     function slidePrev() {
         if (!track) return;
-        const slide = track.querySelector('.slide');
+        const slide = track.querySelector(".slide");
         if (!slide) return;
-        
+
         const slideWidth = slide.clientWidth + 10;
-        track.scrollBy({ left: -slideWidth, behavior: 'smooth' });
+        track.scrollBy({ left: -slideWidth, behavior: "smooth" });
     }
 
     let autoPlay = setInterval(slideNext, 3000);
@@ -126,12 +162,12 @@
     }
 
     if (nextBtn && prevBtn && track) {
-        nextBtn.addEventListener('click', () => {
+        nextBtn.addEventListener("click", () => {
             slideNext();
             resetAutoPlay();
         });
 
-        prevBtn.addEventListener('click', () => {
+        prevBtn.addEventListener("click", () => {
             slidePrev();
             resetAutoPlay();
         });
