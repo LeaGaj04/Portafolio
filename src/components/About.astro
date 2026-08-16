@@ -1,28 +1,38 @@
 ---
+// 1. Importamos la herramienta mágica de imágenes
+import { Image } from 'astro:assets';
 
+// 2. Importamos la foto que quieres usar. 
+import fotoSobreMi from '../assets/images/Perfil/cara.jpg'; 
 ---
 
 <section id="sobre" class="about-wrapper">
     <div class="container about-content">
         <div class="about-text">
-            <h2>Director Creativo, Audio Visual</h2>
-            <p>
-                Especializado en narrativas visuales de alto impacto — del
-                cortometraje al editorial de moda. Cada encuadre es una elección
-                deliberada. Cada proyecto, una conversación entre luz, tiempo y
-                silencio.
-            </p>
+            <!-- Título principal H1 y subtítulo H2 -->
+            <h1>CHRISTOPHER MORENO</h1>
+            <h2>Director Creativo Audiovisual</h2>
+            
+            <p>Especializado en narrativas visuales de alto impacto — del cortometraje al editorial de moda. Cada encuadre es una elección deliberada. Cada proyecto, una conversación entre luz, tiempo y silencio.</p>
+            
+            <div class="signature">DEZETA</div>
         </div>
-        <div class="about-image"></div>
+        
+        <div class="about-image-container">
+            <Image class="about-image" src={fotoSobreMi} alt="Retrato de Dezeta" width={800} />
+        </div>
     </div>
 </section>
 
 <style>
+    /* Importamos Permanent Marker que tiene textura de marcador grueso */
+    @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
     .about-wrapper {
         width: 100%;
         background-color: #f7f7f7;
-        margin: 5rem 0; /* Margen blanco superior e inferior */
-        padding: 3.5rem 0; /* REDUCIDO: Menos altura para el fondo gris */
+        margin: 5rem 0; 
+        padding: 3.5rem 0; 
     }
 
     .container {
@@ -34,16 +44,26 @@
     .about-content {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 3rem; /* REDUCIDO: Menos espacio entre texto y foto */
+        gap: 3rem; 
         align-items: center;
     }
 
-    .about-text h2 {
-        font-size: 2.4rem; /* REDUCIDO: Titular más compacto */
+    .about-text h1 {
+        font-size: 2.8rem; 
         font-weight: 900;
         line-height: 1.1;
-        margin-bottom: 1.2rem;
+        margin-bottom: 0.5rem;
         text-transform: uppercase;
+        letter-spacing: -0.02em;
+    }
+
+    .about-text h2 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #555; 
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
     }
 
     .about-text p {
@@ -51,39 +71,64 @@
         line-height: 1.6;
         font-weight: 300;
         max-width: 90%;
+        margin-bottom: 2rem; 
+    }
+
+    /* --- ESTILOS DE LA FIRMA URBANA/BROCHA --- */
+    .signature {
+        font-family: 'Permanent Marker', cursive; 
+        font-size: 3.8rem; /* Bien grande para impactar */
+        color: #d32f2f; /* Rojo intenso */
+        display: inline-block;
+        text-transform: uppercase; /* Forzamos mayúsculas como en tu imagen */
+        letter-spacing: 3px; /* Separamos un poco las letras */
+        /* TRUCO: rotate la inclina un poco hacia arriba, skewX la deforma hacia adelante dando sensación de velocidad */
+        transform: rotate(-3deg) skewX(-15deg); 
+        margin-top: 0.5rem;
+        opacity: 0.9; 
+    }
+
+    .about-image-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 
     .about-image {
         width: 100%;
-        max-height: 50vh; /* REDUCIDO: La foto ocupará máximo la mitad de la pantalla */
+        max-height: 50vh; 
         aspect-ratio: 3 / 4;
+        object-fit: cover; 
         background-color: var(--gray-placeholder);
-        /* Ruta de tu foto */
-        background-image: url("https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop");
-        background-size: cover;
-        background-position: center top;
-        filter: grayscale(100%);
     }
 
     /* Adaptación a móviles */
     @media (max-width: 1024px) {
         .about-wrapper {
-            margin: 2rem 0; /* Menos margen exterior */
-            padding: 3rem 1rem; /* Añadimos padding lateral (1rem) para que el texto no toque los bordes */
+            margin: 2rem 0;
+            padding: 3rem 1rem;
         }
 
         .about-content {
             grid-template-columns: 1fr;
-            gap: 2.5rem; /* Aseguramos espacio entre el texto y la foto */
+            gap: 2.5rem;
+        }
+        
+        .about-text h1 {
+            font-size: 2.2rem;
         }
 
         .about-text h2 {
-            font-size: 2rem; /* Titular más pequeño en móvil */
+            font-size: 1.1rem;
         }
 
         .about-image {
             max-height: 45vh;
-            margin-bottom: 1rem; /* Un poco de aire abajo de la foto */
+            margin-bottom: 1rem;
+        }
+
+        .signature {
+            font-size: 2.8rem; 
         }
     }
 </style>
