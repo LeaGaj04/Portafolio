@@ -1,0 +1,63 @@
+---
+---
+
+<section id="filmmaker" class="filmmaker-section">
+    <div class="container">
+        <h2>FILMMAKER</h2>
+        <!-- Esta caja es el "placeholder" (marcador de posición) de tu video -->
+        <div class="video-placeholder">
+            <span>Reel / Video Próximamente</span>
+        </div>
+    </div>
+</section>
+
+<style>
+    .filmmaker-section {
+        width: 100%;
+        margin: 6rem 0; /* Espaciado para separarlo de la galería y de creator */
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        margin-bottom: 3rem;
+        text-align: center;
+    }
+
+    /* La caja del video */
+    .video-placeholder {
+        width: 100%;
+        aspect-ratio: 16 / 9; /* Formato clásico de video/cine */
+        background-color: #111; /* Negro para que parezca pantalla apagada */
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: monospace;
+        font-size: 1.2rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        border: 1px solid #333;
+    }
+
+    /* Responsive para celulares */
+    @media (max-width: 768px) {
+        .filmmaker-section {
+            margin: 4rem 0;
+        }
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        .video-placeholder {
+            font-size: 0.9rem;
+        }
+    }
+</style>
