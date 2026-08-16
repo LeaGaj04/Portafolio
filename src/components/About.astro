@@ -13,9 +13,12 @@ import fotoSobreMi from '../assets/images/Perfil/cara.jpg';
             <h1>CHRISTOPHER MORENO</h1>
             <h2>Director Creativo Audiovisual</h2>
             
-            <p>Especializado en narrativas visuales de alto impacto — del cortometraje al editorial de moda. Cada encuadre es una elección deliberada. Cada proyecto, una conversación entre luz, tiempo y silencio.</p>
+            <p>Dentro de mi comunicación visual, busco transmitir la belleza de cada momento, de cada prenda y de cada lugar al que soy invitado a crear. No busco simplemente fotografiar o grabar, sino conectar con las personas, comprender sus ideas y transformar sus conceptos en imágenes que logren transmitir lo que imaginan.</p>
             
-            <div class="signature">DEZETA</div>
+            <p>Mi objetivo es crear un vínculo con cada proyecto, donde la creatividad sea un punto de encuentro entre mi visión y la de quienes confían en mi trabajo. Busco que cada imagen tenga una intención, una identidad y la capacidad de hacer sentir y conectar.</p>
+            
+            <!-- Volvemos a la firma original delgada en minúsculas -->
+            <div class="signature">dezeta</div>
         </div>
         
         <div class="about-image-container">
@@ -25,8 +28,8 @@ import fotoSobreMi from '../assets/images/Perfil/cara.jpg';
 </section>
 
 <style>
-    /* Importamos Permanent Marker que tiene textura de marcador grueso */
-    @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+    /* Fuente Rock Salt para el efecto de brocha seca y delgada */
+    @import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
 
     .about-wrapper {
         width: 100%;
@@ -70,22 +73,24 @@ import fotoSobreMi from '../assets/images/Perfil/cara.jpg';
         font-size: 0.95rem;
         line-height: 1.6;
         font-weight: 300;
-        max-width: 90%;
-        margin-bottom: 2rem; 
+        max-width: 95%;
+        margin-bottom: 1rem; 
     }
 
-    /* --- ESTILOS DE LA FIRMA URBANA/BROCHA --- */
+    .about-text p:last-of-type {
+        margin-bottom: 2.5rem; 
+    }
+
+    /* --- ESTILOS DE LA FIRMA AUMENTADA --- */
     .signature {
-        font-family: 'Permanent Marker', cursive; 
-        font-size: 3.8rem; /* Bien grande para impactar */
-        color: #d32f2f; /* Rojo intenso */
+        font-family: 'Rock Salt', cursive; 
+        font-size: 3.5rem; /* ¡Tamaño aumentado drásticamente! */
+        color: #d32f2f; 
         display: inline-block;
-        text-transform: uppercase; /* Forzamos mayúsculas como en tu imagen */
-        letter-spacing: 3px; /* Separamos un poco las letras */
-        /* TRUCO: rotate la inclina un poco hacia arriba, skewX la deforma hacia adelante dando sensación de velocidad */
-        transform: rotate(-3deg) skewX(-15deg); 
-        margin-top: 0.5rem;
-        opacity: 0.9; 
+        transform: rotate(-6deg); 
+        margin-top: 1rem; /* Un poco más de margen arriba para compensar el tamaño */
+        margin-bottom: 1rem;
+        opacity: 0.85; 
     }
 
     .about-image-container {
@@ -128,7 +133,7 @@ import fotoSobreMi from '../assets/images/Perfil/cara.jpg';
         }
 
         .signature {
-            font-size: 2.8rem; 
+            font-size: 2.8rem; /* Tamaño aumentado también en celulares */
         }
     }
 </style>
