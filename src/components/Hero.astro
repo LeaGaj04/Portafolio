@@ -124,6 +124,36 @@
             flex: 0 0 calc(50% - 5px);
         } /* 2 fotos en celular */
     }
+    /* Adaptación a Tablets */
+    @media (max-width: 1024px) {
+        .slide {
+            flex: 0 0 calc(33.333% - 7px);
+        } /* 3 fotos en tablet */
+    }
+
+    /* Adaptación a Celulares */
+    @media (max-width: 768px) {
+        .hero-section {
+            margin-top: 1rem; /* Un poco menos de margen superior en móvil */
+            margin-bottom: 3rem; /* Añadimos margen inferior para separar del "Sobre mí" */
+        }
+        .carousel-wrapper {
+            height: 50vh; /* Reducimos la altura a la mitad de la pantalla para que no sea tan largo */
+            max-height: 400px; /* Un límite máximo para pantallas muy altas */
+        }
+        .slide {
+            flex: 0 0 100%;
+        }
+        .carousel-arrow {
+            font-size: 2rem;
+        }
+        .carousel-arrow.prev {
+            left: 10px;
+        }
+        .carousel-arrow.next {
+            right: 10px;
+        }
+    }
 </style>
 
 <script>

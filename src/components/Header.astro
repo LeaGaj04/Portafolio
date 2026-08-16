@@ -80,4 +80,29 @@
     @media (max-width: 1024px) {
         nav ul { display: none; }
     }
+    /* Adaptación a Tablets */
+    @media (max-width: 1024px) {
+        nav ul { display: none; }
+    }
+
+    /* Adaptación a Celulares (iPhone, etc) */
+    @media (max-width: 768px) {
+        .container {
+            padding: 1.5rem 1rem; /* Menos espacio arriba y abajo */
+        }
+        .logo {
+            font-size: 1.1rem; /* Achicamos la letra */
+            letter-spacing: -0.02em;
+        }
+        .social-icons {
+            gap: 0.5rem; /* Juntamos un poco los iconos */
+        }
+    }
+
+    /* Adaptación a Celulares muy estrechos */
+    @media (max-width: 480px) {
+        .logo {
+            font-size: 0.95rem; /* Aún más pequeño para que no se corte nunca */
+        }
+    }
 </style>
