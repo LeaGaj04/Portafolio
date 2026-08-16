@@ -1,48 +1,29 @@
 ---
+// 1. Importamos la herramienta mágica de Astro
+import { Image } from 'astro:assets';
 
+// 2. NUEVA COMBINACIÓN DE FOTOS
+import img1 from '../assets/images/Redbull/IMG_1224.jpeg';
+import img2 from '../assets/images/Basketball/IMG_3101.jpeg';
+import img3 from '../assets/images/Urbano/_DSC3364.jpeg';
+import img4 from '../assets/images/Donellz/_DSC3200.jpeg';
+import img5 from '../assets/images/Conception/_DSC4296.jpeg';
+import img6 from '../assets/images/Beeway/_DSC4792.jpeg';
 ---
 
 <section class="hero-section">
     <div class="container">
         <div class="carousel-wrapper">
             <button class="carousel-arrow prev">‹</button>
-
+            
             <div class="carousel-track" id="track">
-                <img
-                    class="slide"
-                    src="/images/Conception/_DSC4284.jpeg"
-                    alt="Proyecto Conception 1"
-                />
-                <img
-                    class="slide"
-                    src="/images/Conception/_DSC4296.jpeg"
-                    alt="Proyecto Conception 2"
-                />
-                <img
-                    class="slide"
-                    src="/images/Conception/_DSC4327.jpeg"
-                    alt="Proyecto Conception 3"
-                />
-                <img
-                    class="slide"
-                    src="/images/Conception/_DSC4633.jpeg"
-                    alt="Proyecto Conception 4"
-                />
-                <img
-                    class="slide"
-                    src="/images/Conception/_DSC4641.jpeg"
-                    alt="Proyecto Conception 5"
-                />
-                <img
-                    class="slide"
-                    src="/images/Conception/_DSC4655.jpeg"
-                    alt="Proyecto Conception 6"
-                />
-                <img
-                    class="slide"
-                    src="/images/Conception/IMG_3216.jpeg"
-                    alt="Proyecto Conception 7"
-                />
+                <!-- 3. Usamos <Image /> y le pasamos la clase "slide" -->
+                <Image class="slide" src={img1} alt="Slide Redbull 2" width={600} />
+                <Image class="slide" src={img2} alt="Slide Basketball 2" width={600} />
+                <Image class="slide" src={img3} alt="Slide Urbano 2" width={600} />
+                <Image class="slide" src={img4} alt="Slide Donellz 2" width={600} />
+                <Image class="slide" src={img5} alt="Slide Conception 2" width={600} />
+                <Image class="slide" src={img6} alt="Slide Beeway 2" width={600} />
             </div>
 
             <button class="carousel-arrow next">›</button>
@@ -53,7 +34,7 @@
 <style>
     .hero-section {
         width: 100%;
-        margin-top: 2rem;
+        margin-top: 2rem; 
     }
 
     .container {
@@ -65,14 +46,14 @@
     .carousel-wrapper {
         position: relative;
         width: 100%;
-        height: 500px; /* Altura fija para que parezcan tiras de fotos */
+        height: 500px; 
         max-height: 65vh;
-        overflow: hidden;
+        overflow: hidden; 
     }
 
     .carousel-track {
         display: flex;
-        gap: 10px; /* La línea blanca delgada entre cada foto */
+        gap: 10px; 
         width: 100%;
         height: 100%;
         overflow-x: hidden;
@@ -80,12 +61,11 @@
     }
 
     .slide {
-        /* MAGIA AQUÍ: 20% significa que entran exactamente 5 fotos completas */
-        flex: 0 0 calc(20% - 8px);
+        flex: 0 0 calc(20% - 8px); 
         height: 100%;
-        /* El object-fit recorta cualquier foto (incluso horizontales) para que quepan en la tira vertical */
         object-fit: cover;
         object-position: center;
+        /* ELIMINÉ EL FILTRO GRAYSCALE AQUÍ PARA QUE EL ROJO BRILLE */
     }
 
     .carousel-arrow {
@@ -98,7 +78,7 @@
         font-size: 3rem;
         cursor: pointer;
         z-index: 10;
-        text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        text-shadow: 0px 0px 10px rgba(0,0,0,0.5); 
         transition: transform 0.2s ease;
     }
 
@@ -106,82 +86,60 @@
         transform: translateY(-50%) scale(1.2);
     }
 
-    .carousel-arrow.prev {
-        left: 10px;
-    }
-    .carousel-arrow.next {
-        right: 10px;
-    }
+    .carousel-arrow.prev { left: 10px; }
+    .carousel-arrow.next { right: 10px; }
 
-    /* En pantallas más pequeñas, mostramos menos fotos a la vez */
+    /* Adaptación a pantallas pequeñas */
     @media (max-width: 1024px) {
-        .slide {
-            flex: 0 0 calc(33.333% - 7px);
-        } /* 3 fotos en tablet */
+        .slide { flex: 0 0 calc(33.333% - 7px); } 
     }
-    @media (max-width: 768px) {
-        .slide {
-            flex: 0 0 calc(50% - 5px);
-        } /* 2 fotos en celular */
-    }
-    /* Adaptación a Tablets */
-    @media (max-width: 1024px) {
-        .slide {
-            flex: 0 0 calc(33.333% - 7px);
-        } /* 3 fotos en tablet */
-    }
-
-    /* Adaptación a Celulares */
+    
     @media (max-width: 768px) {
         .hero-section {
-            margin-top: 1rem; /* Un poco menos de margen superior en móvil */
-            margin-bottom: 3rem; /* Añadimos margen inferior para separar del "Sobre mí" */
+            margin-top: 1rem; 
+            margin-bottom: 3rem; 
         }
         .carousel-wrapper {
-            height: 50vh; /* Reducimos la altura a la mitad de la pantalla para que no sea tan largo */
-            max-height: 400px; /* Un límite máximo para pantallas muy altas */
+            height: 50vh; 
+            max-height: 400px; 
         }
-        .slide {
-            flex: 0 0 100%;
-        }
+        .slide { 
+            flex: 0 0 100%; 
+        } 
         .carousel-arrow {
-            font-size: 2rem;
+            font-size: 2rem; 
         }
-        .carousel-arrow.prev {
-            left: 10px;
-        }
-        .carousel-arrow.next {
-            right: 10px;
-        }
+        .carousel-arrow.prev { left: 10px; }
+        .carousel-arrow.next { right: 10px; }
     }
 </style>
 
 <script>
-    const track = document.getElementById("track");
-    const nextBtn = document.querySelector(".carousel-arrow.next");
-    const prevBtn = document.querySelector(".carousel-arrow.prev");
+    const track = document.getElementById('track');
+    const nextBtn = document.querySelector('.carousel-arrow.next');
+    const prevBtn = document.querySelector('.carousel-arrow.prev');
 
     function slideNext() {
         if (!track) return;
-        const slide = track.querySelector(".slide");
+        const slide = track.querySelector('.slide');
         if (!slide) return;
-
-        const slideWidth = slide.clientWidth + 10; // ancho de foto + el gap de 10px
+        
+        const slideWidth = slide.clientWidth + 10; 
 
         if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
-            track.scrollTo({ left: 0, behavior: "smooth" });
+            track.scrollTo({ left: 0, behavior: 'smooth' });
         } else {
-            track.scrollBy({ left: slideWidth, behavior: "smooth" });
+            track.scrollBy({ left: slideWidth, behavior: 'smooth' });
         }
     }
 
     function slidePrev() {
         if (!track) return;
-        const slide = track.querySelector(".slide");
+        const slide = track.querySelector('.slide');
         if (!slide) return;
-
+        
         const slideWidth = slide.clientWidth + 10;
-        track.scrollBy({ left: -slideWidth, behavior: "smooth" });
+        track.scrollBy({ left: -slideWidth, behavior: 'smooth' });
     }
 
     let autoPlay = setInterval(slideNext, 3000);
@@ -192,12 +150,12 @@
     }
 
     if (nextBtn && prevBtn && track) {
-        nextBtn.addEventListener("click", () => {
+        nextBtn.addEventListener('click', () => {
             slideNext();
             resetAutoPlay();
         });
 
-        prevBtn.addEventListener("click", () => {
+        prevBtn.addEventListener('click', () => {
             slidePrev();
             resetAutoPlay();
         });

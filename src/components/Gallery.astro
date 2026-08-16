@@ -1,37 +1,46 @@
 ---
+// 1. Importamos el componente mágico de Astro
+import { Image } from 'astro:assets';
+
+// 2. Importamos tus fotos locales desde la nueva carpeta assets
+import imgBasketball from '../assets/images/Basketball/IMG_3097.jpeg';
+import imgBeeway from '../assets/images/Beeway/_DSC4770.jpeg';
+import imgConception from '../assets/images/Conception/_DSC4284.jpeg';
+import imgDonellz from '../assets/images/Donellz/_DSC3125.jpeg';
+import imgRedbull from '../assets/images/Redbull/IMG_1068.jpeg';
+import imgUrbano from '../assets/images/Urbano/_DSC3285.jpeg';
 ---
 
 <section id="fotografo" class="portfolio-grid">
-    <!-- Seleccionamos la primera imagen de cada una de tus carpetas reales -->
+    <!-- 3. Usamos <Image /> en lugar de <img> y le damos un ancho máximo -->
     <div class="grid-item">
-        <img src="/images/Basketball/IMG_3097.jpeg" alt="Proyecto Basketball">
+        <Image src={imgBasketball} alt="Proyecto Basketball" width={800} />
     </div>
     
     <div class="grid-item">
-        <img src="/images/Beeway/_DSC4770.jpeg" alt="Proyecto Beeway">
+        <Image src={imgBeeway} alt="Proyecto Beeway" width={800} />
     </div>
     
     <div class="grid-item">
-        <img src="/images/Conception/_DSC4284.jpeg" alt="Proyecto Conception">
+        <Image src={imgConception} alt="Proyecto Conception" width={800} />
     </div>
     
     <div class="grid-item">
-        <img src="/images/Donellz/_DSC3125.jpeg" alt="Proyecto Donellz">
+        <Image src={imgDonellz} alt="Proyecto Donellz" width={800} />
     </div>
     
     <div class="grid-item">
-        <img src="/images/Redbull/IMG_1068.jpeg" alt="Proyecto Redbull">
+        <Image src={imgRedbull} alt="Proyecto Redbull" width={800} />
     </div>
     
     <div class="grid-item">
-        <img src="/images/Urbano/_DSC3285.jpeg" alt="Proyecto Urbano">
+        <Image src={imgUrbano} alt="Proyecto Urbano" width={800} />
     </div>
 </section>
 
 <style>
     .portfolio-grid {
         display: grid;
-        /* Cambiamos a 3 columnas para que las 6 fotos encajen en 2 filas exactas */
         grid-template-columns: repeat(3, 1fr);
         gap: 0;
         width: 100%;
@@ -39,42 +48,36 @@
 
     .grid-item {
         width: 100%;
-        aspect-ratio: 3 / 4; /* Mantiene el formato de retrato alto */
+        aspect-ratio: 3 / 4;
         background-color: #111;
         overflow: hidden;
         position: relative;
     }
 
+    /* La etiqueta <Image /> genera un <img> en el HTML final, así que este CSS sigue funcionando perfecto */
     .grid-item img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        /* Efecto blanco y negro por defecto */
         filter: grayscale(100%);
         transition: filter 0.5s ease, transform 0.5s ease;
     }
 
-    /* EFECTO HOVER: Vuelve al color original y hace un zoom suave */
     .grid-item:hover img {
         transform: scale(1.05);
         filter: grayscale(0%); 
     }
 
-    /* --- Adaptación Responsive --- */
-    
-    /* En tablets, mostramos 2 columnas (3 filas de 2 fotos) */
     @media (max-width: 1024px) {
         .portfolio-grid {
             grid-template-columns: repeat(2, 1fr);
         }
     }
     
-    /* En celulares, mostramos 1 sola columna (1 foto debajo de la otra) */
     @media (max-width: 768px) {
         .portfolio-grid {
             grid-template-columns: 1fr;
         }
-        /* Hacemos que las fotos no sean tan inmensamente altas en celulares */
         .grid-item {
             aspect-ratio: 4 / 5;
         }
