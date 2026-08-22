@@ -1,0 +1,102 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+// 1. Astro usa getStaticPaths para saber qué páginas crear
+export async function getStaticPaths() {
+    return [
+        { params: { proyecto: 'basketball' } },
+        { params: { proyecto: 'beeway' } },
+        { params: { proyecto: 'conception' } },
+        { params: { proyecto: 'donellz' } },
+        { params: { proyecto: 'redbull' } },
+        { params: { proyecto: 'urbano' } },
+    ];
+}
+
+const { proyecto } = Astro.params;
+
+// 2. import.meta.glob busca automáticamente TODAS tus fotos en la carpeta assets
+const allImages = import.meta.glob('../../assets/images/**/*.{jpeg,jpg,png,JPG,JPEG}', { eager: true });
+
+// 3. Filtramos el objeto inmenso para quedarnos SOLO con las fotos que coinciden con el nombre del proyecto
+const projectImages = Object.entries(allImages)
+    .filter(([path]) => path.toLowerCase().includes(`/${proyecto}/`))
+    .map(([path, module]) => module.default);
+---
+
+<Layout title={`Christopher Moreno | ${proyecto.toUpperCase()}`}>
+    <section class="project-view">
+        <div class="header">
+            <a href="/#fotografo" class="back-btn">← Volver a la galería</a>
+            <h1>{proyecto.toUpperCase()}</h1>
+        </div>
+
+        <!-- Renderizamos todas las fotos que encontró automáticamente -->
+        <div class="photo-feed">
+            {projectImages.map((img) => (
+                <Image src={img} alt={`Fotografía del proyecto ${proyecto}`} width={1200} class="full-size-img" />
+            ))}
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .project-view {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 4rem 1rem;
+    }
+
+    .header {
+        margin-bottom: 3rem;
+        text-align: center;
+    }
+
+    .back-btn {
+        display: inline-block;
+        margin-bottom: 1.5rem;
+        color: #666;
+        text-decoration: none;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        letter-spacing: 0.05em;
+        transition: color 0.2s;
+    }
+
+    .back-btn:hover {
+        color: #000;
+    }
+
+    h1 {
+        font-size: 3rem;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        margin: 0;
+    }
+
+    .photo-feed {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem; /* Espacio generoso entre cada foto gigante */
+    }
+
+    .full-size-img {
+        width: 100%;
+        height: auto;
+        background-color: #eee;
+    }
+
+    @media (max-width: 768px) {
+        .project-view {
+            padding: 2rem 1rem;
+        }
+        h1 {
+            font-size: 2rem;
+        }
+        .photo-feed {
+            gap: 1.5rem;
+        }
+    }
+</style>
