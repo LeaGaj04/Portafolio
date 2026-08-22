@@ -2,13 +2,11 @@
 // 1. Importamos la herramienta mágica de Astro
 import { Image } from "astro:assets";
 
-// 2. NUEVA COMBINACIÓN DE FOTOS
-import img1 from "../assets/images/Redbull/IMG_1224.jpeg";
-import img2 from "../assets/images/Basketball/IMG_3101.jpeg";
-import img3 from "../assets/images/Urbano/_DSC3364.jpeg";
-import img4 from "../assets/images/Donellz/_DSC3200.jpeg";
-import img5 from "../assets/images/Conception/_DSC4296.jpeg";
-import img6 from "../assets/images/Beeway/_DSC4792.jpeg";
+// 2. NUEVA COMBINACIÓN DE FOTOS (1 Donellz, 2 Conception, 1 Beeway)
+import imgDonellz from "../assets/images/Donellz/_DSC3188.jpeg";
+import imgConception1 from "../assets/images/Conception/_DSC4633.jpeg";
+import imgConception2 from "../assets/images/Conception/IMG_3227.jpeg"; 
+import imgBeeway from "../assets/images/Beeway/_DSC4792.jpeg";
 ---
 
 <section class="hero-section">
@@ -17,42 +15,30 @@ import img6 from "../assets/images/Beeway/_DSC4792.jpeg";
             <button class="carousel-arrow prev">‹</button>
 
             <div class="carousel-track" id="track">
-                <!-- 3. Usamos <Image /> y le pasamos la clase "slide" -->
+                <!-- 3. Usamos <Image /> con las fotos en el orden que pediste -->
                 <Image
                     class="slide"
-                    src={img1}
-                    alt="Slide Redbull 2"
-                    width={600}
+                    src={imgDonellz}
+                    alt="Proyecto Donellz"
+                    width={800}
                 />
                 <Image
                     class="slide"
-                    src={img2}
-                    alt="Slide Basketball 2"
-                    width={600}
+                    src={imgConception1}
+                    alt="Proyecto Conception 1"
+                    width={800}
                 />
                 <Image
                     class="slide"
-                    src={img3}
-                    alt="Slide Urbano 2"
-                    width={600}
+                    src={imgConception2}
+                    alt="Proyecto Conception 2"
+                    width={800}
                 />
                 <Image
                     class="slide"
-                    src={img4}
-                    alt="Slide Donellz 2"
-                    width={600}
-                />
-                <Image
-                    class="slide"
-                    src={img5}
-                    alt="Slide Conception 2"
-                    width={600}
-                />
-                <Image
-                    class="slide"
-                    src={img6}
-                    alt="Slide Beeway 2"
-                    width={600}
+                    src={imgBeeway}
+                    alt="Proyecto Beeway"
+                    width={800}
                 />
             </div>
 
@@ -95,7 +81,6 @@ import img6 from "../assets/images/Beeway/_DSC4792.jpeg";
         height: 100%;
         object-fit: cover;
         object-position: center;
-        /* ELIMINÉ EL FILTRO GRAYSCALE AQUÍ PARA QUE EL ROJO BRILLE */
     }
 
     .carousel-arrow {
