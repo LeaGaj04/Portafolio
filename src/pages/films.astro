@@ -1,18 +1,207 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+// Lista de proyectos audiovisuales. 
+// Por ahora están en modo "proximamente".
+const videos = [
+    {
+        titulo: "NUEVO CORTOMETRAJE",
+        colaboracion: "Por anunciar",
+        plataforma: "proximamente", 
+        videoId: "", 
+    },
+    {
+        titulo: "FASHION FILM",
+        colaboracion: "Por anunciar",
+        plataforma: "proximamente",
+        videoId: "", 
+    },
+    {
+        titulo: "VIDEOCLIP MUSICAL",
+        colaboracion: "Por anunciar",
+        plataforma: "proximamente",
+        videoId: "", 
+    }
+];
 ---
 
 <Layout title="Christopher Moreno | Films">
-    <section style="padding: 4rem 2rem; max-width: 1000px; margin: 0 auto;">
-        <h1 style="margin-bottom: 3rem;">FILMS</h1>
-        
-        <!-- Repite este bloque para cada video -->
-        <div class="film-item" style="margin-bottom: 4rem;">
-            <div style="aspect-ratio: 16/9; background: #eee; margin-bottom: 1rem;"></div>
-            <h2 style="font-size: 1.5rem;">Título del Film</h2>
-            <p style="color: #666;">Colaboración: Nombre del artista/cliente</p>
+    <section class="films-view">
+        <div class="header">
+            <a href="/" class="back-btn">← Volver al inicio</a>
+            <h1>FILMS</h1>
+            <p class="subtitle">Selección de proyectos audiovisuales</p>
         </div>
-        
-        <a href="/" style="color: black;">← Volver al inicio</a>
+
+        <div class="videos-feed">
+            {videos.map((video) => (
+                <div class="video-card">
+                    <!-- Contenedor del video con proporción 16:9 perfecta -->
+                    <div class="video-container">
+                        
+                        <!-- Si es YouTube -->
+                        {video.plataforma === 'youtube' && (
+                            <iframe 
+                                src={`https://www.youtube.com/embed/${video.videoId}?modestbranding=1&rel=0`} 
+                                title={video.titulo}
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        )}
+                        
+                        <!-- Si es Vimeo -->
+                        {video.plataforma === 'vimeo' && (
+                            <iframe 
+                                src={`https://player.vimeo.com/video/${video.videoId}?title=0&byline=0&portrait=0`} 
+                                title={video.titulo}
+                                frameborder="0" 
+                                allow="autoplay; fullscreen; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        )}
+
+                        <!-- Si es PRÓXIMAMENTE -->
+                        {video.plataforma === 'proximamente' && (
+                            <div class="placeholder-box">
+                                <span>PRÓXIMAMENTE</span>
+                            </div>
+                        )}
+                    </div>
+                    
+                    <!-- Información debajo de cada video -->
+                    <div class="video-info">
+                        <h2>{video.titulo}</h2>
+                        <p>Colaboración: <strong>{video.colaboracion}</strong></p>
+                    </div>
+                </div>
+            ))}
+        </div>
     </section>
 </Layout>
+
+<style>
+    .films-view {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 4rem 1rem;
+    }
+
+    /* --- HEADER --- */
+    .header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .back-btn {
+        display: inline-block;
+        margin-bottom: 1.5rem;
+        color: #666;
+        text-decoration: none;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        letter-spacing: 0.05em;
+        transition: color 0.2s;
+    }
+
+    .back-btn:hover {
+        color: #000;
+    }
+
+    h1 {
+        font-size: 3.5rem;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        margin: 0 0 0.5rem 0;
+    }
+
+    .subtitle {
+        color: #666;
+        font-size: 1.1rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+
+    /* --- FEED DE VIDEOS --- */
+    .videos-feed {
+        display: flex;
+        flex-direction: column;
+        gap: 5rem; 
+    }
+
+    .video-card {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .video-container {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; /* Proporción 16:9 */
+        background-color: #111; 
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* ESTILO PARA LA CAJA DE PRÓXIMAMENTE */
+    .placeholder-box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #111;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .placeholder-box span {
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: 400;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        opacity: 0.7;
+    }
+
+    .video-info h2 {
+        font-size: 1.8rem;
+        font-weight: 900;
+        margin: 0 0 0.5rem 0;
+        letter-spacing: 0.02em;
+    }
+
+    .video-info p {
+        font-size: 1rem;
+        color: #555;
+        margin: 0;
+    }
+
+    /* --- RESPONSIVE MÓVIL --- */
+    @media (max-width: 768px) {
+        .films-view {
+            padding: 2rem 1rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+        }
+        .videos-feed {
+            gap: 3rem;
+        }
+        .video-info h2 {
+            font-size: 1.4rem;
+        }
+        .placeholder-box span {
+            font-size: 1rem;
+        }
+    }
+</style>
